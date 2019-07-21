@@ -1,7 +1,7 @@
 <template>
    <div class="login">
        <div class="container">
-           <img src="@/assets/avatar.jpg" alt="" class="avatar">
+           <img src="@/assets/avatar.gif" alt="" class="avatar">
 <el-form :model="loginForm" :rules="rules" ref="loginForm" class="demo-ruleForm">
   <el-form-item  prop="username" >
     <el-input v-model="loginForm.username" placeholder="用户名" prefix-icon="myicon myicon-user"></el-input>
@@ -45,7 +45,11 @@ export default {
         //   调用login方法，获取axios发送请求的数据
           login(this.loginForm)
             .then((res) => {
+              console.log(res)
               if (res.data.meta.status === 200) {
+                // 在跳转页面前，将token的值存储在本地存储中
+                 localStorage.setItem('vue_cli_myproject',res.data.data.token)
+                 
                 //    跳转到首页中
                 this.$router.push({ name: 'home' })
               } else {

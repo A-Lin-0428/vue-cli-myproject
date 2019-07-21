@@ -1,11 +1,118 @@
 <template>
-   <div class="home">首页</div>
+  <div class="home">
+    <el-container>
+      <el-aside width="auto">
+        <div class="logo"></div>
+        <el-menu
+          :collapse="iscollapse"
+          :unique-opened="true"
+          default-active="2"
+          class="el-menu-vertical-demo"
+          background-color="#545c64"
+          text-color="#fff"
+          active-text-color="#ffd04b"
+        >
+          <el-submenu index="1">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>用户管理</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="1-1">
+                <template slot="title">
+                  <i class="el-icon-menu"></i>
+                  <span>用户列表</span>
+                </template>
+              </el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+          <el-submenu index="2">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>角色管理</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="2-1">
+                <template slot="title">
+                  <i class="el-icon-menu"></i>
+                  <span>角色列表</span>
+                </template>
+              </el-menu-item>
+              <el-menu-item index="2-2 ">
+                <template slot="title">
+                  <i class="el-icon-menu"></i>
+                  <span>角色列表</span>
+                </template>
+              </el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+        </el-menu>
+      </el-aside>
+      <el-container>
+        <el-header>
+          <i class="myicon myicon-menu toggle-btn" @click="iscollapse=!iscollapse"></i>
+          <span class="system-title">用户管理系统后台</span>
+          <a href="javascript:;" class="welcome">welcome</a>
+        </el-header>
+        <el-main>Main</el-main>
+      </el-container>
+    </el-container>
+  </div>
 </template>
 <script>
 export default {
-
+  data() {
+    return {
+      iscollapse: false
+    }
+  }
 }
 </script>
 <style lang="less" scoped>
-
+.home {
+  height: 100%;
+  .el-menu:not(.el-menu--collapse) {
+    width: 200px;
+    min-height: 400px;
+  }
+   .el-menu {
+      width: auto;
+  }
+  .el-container {
+    height: 100%;
+  }
+  .el-aside {
+    background-color: #545c64;
+  }
+  .el-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #545c64;
+  }
+  .logo {
+    height: 60px;
+    background: url(../assets/logo.png);
+    background-size: cover;
+    background-color: #fff;
+  }
+  .toggle-btn {
+    padding: 0 15px;
+    margin-left: -20px;
+    font-size: 36px;
+    color: white;
+    cursor: pointer;
+    line-height: 60px;
+    &:hover {
+      background-color: #4292cf;
+    }
+  }
+  .system-title {
+    font-size: 28px;
+    color: white;
+  }
+  .welcome {
+    color: white;
+  }
+}
 </style>
