@@ -1,87 +1,83 @@
 <template>
-   <div class="login">
-       <div class="container">
-           <img src="@/assets/avatar.gif" alt="" class="avatar">
-<el-form :model="loginForm" :rules="rules" ref="loginForm" class="demo-ruleForm">
-  <el-form-item  prop="username" >
-    <el-input v-model="loginForm.username" placeholder="用户名" prefix-icon="myicon myicon-user"></el-input>
-  </el-form-item>
-  <el-form-item  prop="password" >
-    <el-input v-model="loginForm.password" placeholder="用户名" prefix-icon="myicon myicon-key"></el-input>
-  </el-form-item>
-  <el-form-item>
-    <el-button type="primary" class="login-btn" @click="login">登录</el-button>
-  </el-form-item>
-</el-form>
-       </div>
-
-   </div>
+  <div class="login">
+    <div class="container">
+      <img src="@/assets/avatar.gif" alt class="avatar" />
+      <el-form :model="loginForm" :rules="rules" ref="loginForm" class="demo-ruleForm">
+        <el-form-item prop="username">
+          <el-input v-model="loginForm.username" placeholder="用户名" prefix-icon="myicon myicon-user"></el-input>
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input v-model="loginForm.password" placeholder="用户名" prefix-icon="myicon myicon-key"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" class="login-btn" @click="login">登录</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+  </div>
 </template>
 <script>
 // 引入当前页面的api接口文件
-import { login } from '@/api/user_index.js'
+import { login } from "@/api/user_index.js";
 export default {
-  data () {
+  data() {
     return {
       loginForm: {
-        username: 'admin',
-        password: '123456'
+        username: "admin",
+        password: "123456"
       },
       rules: {
         username: [
-          { required: true, message: '请输入用户名', trigger: 'blur' }
+          { required: true, message: "请输入用户名", trigger: "blur" }
         ],
-        password: [
-          { required: true, message: '请输入密码', trigger: 'blur' }
-        ]
+        password: [{ required: true, message: "请输入密码", trigger: "blur" }]
       }
-    }
+    };
   },
   methods: {
-    login () {
-      this.$refs.loginForm.validate((valid) => {
+    login() {
+      this.$refs.loginForm.validate(valid => {
         if (valid) {
-        //   console.log('gogogo')
-        //   调用login方法，获取axios发送请求的数据
+          //   console.log('gogogo')
+          //   调用login方法，获取axios发送请求的数据
           login(this.loginForm)
-            .then((res) => {
-              console.log(res)
+            .then(res => {
+              // console.log(res)
               if (res.data.meta.status === 200) {
                 // 在跳转页面前，将token的值存储在本地存储中
-                 localStorage.setItem('vue_cli_myproject',res.data.data.token)
-                 
+                localStorage.setItem("vue_cli_myproject", res.data.data.token);
+
                 //    跳转到首页中
-                this.$router.push({ name: 'home' })
+                this.$router.push({ name: "home" });
               } else {
                 //    提示用户
                 this.$message({
                   message: res.data.meta.msg,
-                  type: 'error'
-                })
+                  type: "error"
+                });
               }
             })
-            .catch((err) => {
-              console.log(err)
+            .catch(err => {
+              console.log(err);
               this.$message({
-                message: '登录失败',
-                type: 'error'
-              })
-            })
+                message: "登录失败",
+                type: "error"
+              });
+            });
         } else {
           // 给用户提示，用户名和密码不能为空
           this.$message({
-            message: '用户名和密码不能为空',
-            type: 'error'
-          })
+            message: "用户名和密码不能为空",
+            type: "error"
+          });
         }
-      })
+      });
     }
   }
-
-}
+};
 </script>
 <style lang="less" scoped>
-  .login {
+.login {
   position: fixed;
   width: 100%;
   height: 100%;

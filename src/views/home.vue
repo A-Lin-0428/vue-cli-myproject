@@ -4,6 +4,7 @@
       <el-aside width="auto">
         <div class="logo"></div>
         <el-menu
+          :router="true"
           :collapse="iscollapse"
           :unique-opened="true"
           default-active="2"
@@ -18,7 +19,7 @@
               <span>用户管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="1-1">
+              <el-menu-item index="/home/users">
                 <template slot="title">
                   <i class="el-icon-menu"></i>
                   <span>用户列表</span>
@@ -52,9 +53,12 @@
         <el-header>
           <i class="myicon myicon-menu toggle-btn" @click="iscollapse=!iscollapse"></i>
           <span class="system-title">用户管理系统后台</span>
-          <a href="javascript:;" class="welcome">welcome</a>
+          <a href="javascript:;" class="exit">退出</a>
         </el-header>
-        <el-main>Main</el-main>
+
+        <el-main>
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -64,9 +68,9 @@ export default {
   data() {
     return {
       iscollapse: false
-    }
+    };
   }
-}
+};
 </script>
 <style lang="less" scoped>
 .home {
@@ -75,8 +79,8 @@ export default {
     width: 200px;
     min-height: 400px;
   }
-   .el-menu {
-      width: auto;
+  .el-menu {
+    width: auto;
   }
   .el-container {
     height: 100%;
@@ -111,7 +115,7 @@ export default {
     font-size: 28px;
     color: white;
   }
-  .welcome {
+  .exit {
     color: white;
   }
 }
