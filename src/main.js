@@ -13,7 +13,7 @@ Vue.use(ElementUI)
 
 // 设置导航守卫
 router.beforeEach((to, from, next) => {
-  console.log(to);
+  // console.log(to);
   var token = localStorage.getItem('vue_cli_myproject');
   if (token || to.path === '/login') {
     next()

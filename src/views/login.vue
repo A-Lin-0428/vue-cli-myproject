@@ -18,19 +18,19 @@
 </template>
 <script>
 // 引入当前页面的api接口文件
-import { login } from "@/api/user_index.js";
+import { login } from '@/api/user_index.js'
 export default {
   data() {
     return {
       loginForm: {
-        username: "admin",
-        password: "123456"
+        username: 'admin',
+        password: '123456'
       },
       rules: {
         username: [
-          { required: true, message: "请输入用户名", trigger: "blur" }
+          { required: true, message: '请输入用户名', trigger: 'blur' }
         ],
-        password: [{ required: true, message: "请输入密码", trigger: "blur" }]
+        password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
       }
     };
   },
@@ -45,36 +45,36 @@ export default {
               // console.log(res)
               if (res.data.meta.status === 200) {
                 // 在跳转页面前，将token的值存储在本地存储中
-                localStorage.setItem("vue_cli_myproject", res.data.data.token);
+                localStorage.setItem('vue_cli_myproject', res.data.data.token)
 
                 //    跳转到首页中
-                this.$router.push({ name: "home" });
+                this.$router.push({ name: 'home' })
               } else {
                 //    提示用户
                 this.$message({
                   message: res.data.meta.msg,
-                  type: "error"
-                });
+                  type: 'error'
+                })
               }
             })
             .catch(err => {
-              console.log(err);
+              console.log(err)
               this.$message({
-                message: "登录失败",
-                type: "error"
-              });
-            });
+                message: '登录失败',
+                type: 'error'
+              })
+            })
         } else {
           // 给用户提示，用户名和密码不能为空
           this.$message({
-            message: "用户名和密码不能为空",
-            type: "error"
-          });
+            message: '用户名和密码不能为空',
+            type: 'error'
+          })
         }
-      });
+      })
     }
   }
-};
+}
 </script>
 <style lang="less" scoped>
 .login {
