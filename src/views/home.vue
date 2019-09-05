@@ -13,6 +13,7 @@
           text-color="#fff"
           active-text-color="#ffd04b"
         >
+          <el-container>来来来拉吧</el-container>
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-location"></i>
@@ -65,12 +66,12 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       iscollapse: false
-    };
+    }
   }
-};
+}
 </script>
 <style lang="less" scoped>
 .home {
